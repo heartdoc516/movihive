@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import logo from "../assets/logo-yellow.png";
-import "../style/main.css";
+import logo from "../assets/logo-yellow.svg";
+import "../style/navbar.css";
 import { Search, User, Star } from "react-feather";
 import Navlink from "./Navlink";
 import { Link } from "react-router-dom";
 
-const Navbar = ({ isAuthenticated }) => {
+const Navbar = ({ user }) => {
   const [active, setIsActive] = useState("home");
 
   const handleActive = (name) => {
@@ -13,10 +13,12 @@ const Navbar = ({ isAuthenticated }) => {
   };
 
   return (
-    <nav className={`d-flex justify-content-beteen p-2 navbar`}>
-      <div className="container-fluid d-flex justify-content-between">
-        <img className="navbar-logo" src={logo} alt="logo" />
-        <div className="d-flex justify-content-between">
+    <nav className={`navbar`}>
+      <div className="container-fluid">
+        <div className="logo-container">
+          <img className="navbar-logo" src={logo} alt="logo" />
+        </div>
+        <div className="nav-links d-none d-lg-flex justify-content-between">
           <Navlink
             name="Home"
             slug="/"
@@ -48,21 +50,25 @@ const Navbar = ({ isAuthenticated }) => {
             setIsActive={handleActive}
           />
         </div>
-        <div className="d-flex justify-content-between align-items-center gap-4">
-          {isAuthenticated ? (
-            <div className="d-flex justify-content-between align-items-center">
-              <div className="title lh-1 text-bg-dark pt-1 pe-1">
-                My Watchlist
-              </div>
+        <div className="nav-links-end d-none d-lg-flex justify-content-end align-items-center gap-4">
+          {user ? (
+            <Link
+              to="/watchlist"
+              className="watchlist d-flex justify-content-between align-items-center"
+            >
+              <div className="title lh-1 pt-1 pe-1">My Watchlist</div>
               <Star color="gold" size={20} />
-            </div>
+            </Link>
           ) : (
             <Link to="/auth">
               <User color="gold" size={20} />
             </Link>
           )}
 
-          <Link to="search">
+          <Link
+            to="search"
+            className="d-flex justify-content-center align-items-center"
+          >
             <Search color="gold" size={20} />
           </Link>
         </div>
