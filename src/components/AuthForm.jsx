@@ -1,15 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
+import { Auth } from "aws-amplify";
+import { useNavigate } from "react-router-dom";
 import "../style/authform.css";
 const AuthForm = ({
+  user,
+  setUser,
   authForm,
-  signIn,
-  signUp,
+  setAuthForm,
+  username,
   setUsername,
-  setEmail,
+  password,
   setPassword,
+  passwordConfirmation,
   setPasswordConfirmation,
-  handleAuthForm,
+  email,
+  setEmail,
 }) => {
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
+
+  async function signUp(e) {
+    e.preventDefault();
+    try {
+      const { user } = await Auth.signUp({
+        username,
+        password,
+        attributes: {
+          email,
+        },
+        autoSignIn: {
+          // optional - enables auto sign in after user is confirmed
+          enabled: true,
+        },
+      });
+      console.log(user);
+      setAuthForm("Confirm");
+    } catch (error) {
+      setError(error.message);
+      console.log("error signing up:", error);
+    }
+  }
+
+  async function signIn(e) {
+    e.preventDefault();
+    try {
+      const user = await Auth.signIn(username, password);
+      console.log(user);
+      setUser(user);
+      navigate("/");
+    } catch (error) {
+      setError(error.message);
+      console.log("error signing in", error);
+    }
+  }
+
   return (
     <form
       onSubmit={authForm === "Register" ? (e) => signUp(e) : (e) => signIn(e)}
@@ -29,6 +73,7 @@ const AuthForm = ({
         required
         onChange={(e) => {
           setUsername(e.target.value);
+          setError("");
         }}
       />
       {authForm === "Register" && (
@@ -55,6 +100,7 @@ const AuthForm = ({
         required
         onChange={(e) => {
           setPassword(e.target.value);
+          setError("");
         }}
       />
 
@@ -74,10 +120,21 @@ const AuthForm = ({
         </>
       )}
 
+      <p className="text-danger">{error}</p>
+
       <button className="forgot" href="#">
         Forgot Password?
       </button>
-      <button className="register" onClick={handleAuthForm} type="button">
+      <button
+        className="register"
+        onClick={() => {
+          authForm === "Register"
+            ? setAuthForm("Log in")
+            : setAuthForm("Register");
+          setError("");
+        }}
+        type="button"
+      >
         {authForm === "Log in" ? "Register" : "Log in"}
       </button>
 

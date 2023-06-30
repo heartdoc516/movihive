@@ -4,11 +4,18 @@
   --gold: gold;
   --bg: rgb(21, 21, 21);
   --bg-2: rgb(32, 32, 32);
+  --text-color: rgb(239, 239, 239);
+  --text-color-2: rgb(218, 218, 218);
+  --text-color-3: rgb(202, 202, 202);
 }
 
 * {
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
+}
+
+body {
+  background-color: var(--bg);
 }
 
 .title {

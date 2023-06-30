@@ -1,0 +1,28 @@
+@import url("./main.css");
+
+.mobile-menu {
+  background-color: var(--bg);
+  position: absolute;
+  top: 46px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 90%;
+  padding-top: 80px;
+}
+
+.mobile-menu .coded-by {
+  font-size: smaller;
+  color: rgb(115, 115, 115);
+}
+
+.mobile-menu .movihive {
+  line-height: 1rem;
+  color: var(--gold);
+}
+
+.mobile-menu .mobile-menu-footer {
+  margin-top: 80px;
+  line-height: 1.5rem;
+  color: var(--gold);
+}

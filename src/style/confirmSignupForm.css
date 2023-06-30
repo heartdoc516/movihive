@@ -15,7 +15,7 @@
 
 .confirm-signup-form input[type="submit"] {
   width: 100px;
-  margin: 40px auto;
+  margin: 20px auto;
   background-color: black;
   border: none;
   color: var(--gold);
@@ -39,7 +39,7 @@
 .confirm-signup-form .character {
   width: 40px;
   background-color: rgb(58, 58, 58);
-  color: white;
+  color: rgb(195, 195, 195);
 }
 
 .confirm-signup-form .character--selected {

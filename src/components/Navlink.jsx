@@ -3,11 +3,15 @@ import { NavLink } from "react-router-dom";
 
 import "../style/main.css";
 
-const Navlink = ({ name, slug, activeLink, setIsActive, to }) => {
+const Navlink = ({ name, slug, setMenuDisplay }) => {
   let classname = `title fs-4 nav_link`;
 
   return (
-    <NavLink to={slug} className={classname} onClick={() => setIsActive(name)}>
+    <NavLink
+      to={slug}
+      className={classname}
+      onClick={() => setMenuDisplay(false)}
+    >
       {name}
     </NavLink>
   );
