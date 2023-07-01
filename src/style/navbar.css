@@ -55,6 +55,38 @@
   color: var(--gold);
 }
 
+.login-link {
+  text-decoration: none;
+}
+
+.login-link:link {
+  color: var(--text-color-2);
+}
+
+.login-link:visited {
+  color: var(--text-color-2);
+}
+
+.nav_link:link:hover {
+  color: var(--gold);
+}
+
+.login-link:visited:hover {
+  color: var(--gold);
+}
+
+.login-link:link.active {
+  color: var(--gold);
+}
+
+.login-link:visited.active {
+  color: var(--gold);
+}
+
+.login-link:active {
+  color: var(--gold);
+}
+
 .watchlist {
   text-decoration: none;
 }

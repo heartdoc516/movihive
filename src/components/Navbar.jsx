@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import logo from "../assets/logo-yellow.svg";
 import "../style/navbar.css";
-import { Search, User, Star, Menu, X } from "react-feather";
+import { Search, User, Menu, X } from "react-feather";
 import Navlink from "./Navlink";
 import { Link } from "react-router-dom";
 import MobileMenu from "./MobileMenu.jsx";
@@ -37,16 +37,12 @@ const Navbar = ({ user }) => {
           </div>
           <div className="nav-links-end d-none d-lg-flex justify-content-end align-items-center gap-4">
             {user ? (
-              <Link
-                to="/watchlist"
-                className="watchlist d-flex justify-content-between align-items-center"
-              >
-                <div className="title lh-1 pt-1 pe-1">My Watchlist</div>
-                <Star color="gold" size={20} />
+              <Link to="/watchlist">
+                <User color="gold" size={20} />
               </Link>
             ) : (
-              <Link to="/auth">
-                <User color="gold" size={20} />
+              <Link to="/auth" className="login-link">
+                <div>Log In</div>
               </Link>
             )}
 

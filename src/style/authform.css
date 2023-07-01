@@ -50,14 +50,13 @@
 
 .auth-form input[type="submit"] {
   padding: 10px 50px;
-  width: auto;
+  width: 100%;
   background-color: black;
   border: none;
   color: var(--gold);
   cursor: pointer;
-  display: inline-block;
-  margin-top: 40px;
-  clear: right;
+  margin: auto;
+
   -webkit-transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
   -ms-transition: 0.2s ease all;

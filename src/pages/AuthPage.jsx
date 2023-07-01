@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
-import { LoadingContext } from "../context/AppContext";
+import React from "react";
+
 import "../style/signin-page.css";
 import AuthForm from "../components/AuthForm";
 import { useState } from "react";
 import ConfirmSignupForm from "../components/ConfirmSignupForm";
-import Spinner from "../components/Spinner";
 
 const AuthPage = ({ user, setUser }) => {
   const [username, setUsername] = useState("");
@@ -12,13 +11,15 @@ const AuthPage = ({ user, setUser }) => {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [authForm, setAuthForm] = useState("Log in");
-  const { loading, setLoading } = useContext(LoadingContext);
+
   return (
     <main className="signin d-flex justify-content-center align-items-center">
-      {loading && <Spinner />}
-      {authForm === "Confirm" ? (
+      {authForm === "Confirm" && (
         <ConfirmSignupForm setUser={setUser} username={username} />
-      ) : (
+      )}
+      {(authForm === "Register" ||
+        authForm === "Log in" ||
+        authForm === "Forgot Password") && (
         <AuthForm
           setAuthForm={setAuthForm}
           authForm={authForm}

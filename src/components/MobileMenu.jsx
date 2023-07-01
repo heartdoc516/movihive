@@ -22,12 +22,15 @@ const MobileMenu = ({ user, setMenuDisplay }) => {
             className="watchlist d-flex justify-content-between align-items-center"
             onClick={() => setMenuDisplay(false)}
           >
-            <div className="title lh-1 pt-1 pe-1">My Watchlist</div>
-            <Star color="gold" size={20} />
+            <User color="gold" size={20} />
           </Link>
         ) : (
-          <Link to="/auth" onClick={() => setMenuDisplay(false)}>
-            <User color="gold" size={20} />
+          <Link
+            to="/auth"
+            className="login-link"
+            onClick={() => setMenuDisplay(false)}
+          >
+            <div>Log In</div>
           </Link>
         )}
       </div>
