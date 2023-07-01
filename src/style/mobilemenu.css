@@ -9,6 +9,7 @@
   left: 0;
   opacity: 95%;
   padding-top: 80px;
+  z-index: 2;
 }
 
 .mobile-menu .coded-by {

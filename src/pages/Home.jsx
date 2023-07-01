@@ -1,7 +1,8 @@
 import React from "react";
+import CarouselBanner from "../components/CarouselBanner.jsx";
 
 const Home = () => {
-  return <div>home</div>;
+  return <CarouselBanner />;
 };
 
 export default Home;

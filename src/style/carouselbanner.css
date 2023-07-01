@@ -1,0 +1,14 @@
+@import url("./main.css");
+
+.carousel-banner .carousel-item {
+  height: 60vh;
+  width: 100%;
+}
+
+.carousel-banner img {
+  height: 100%;
+  width: 80vw;
+  margin: auto;
+  object-position: center center;
+  object-fit: cover;
+}
