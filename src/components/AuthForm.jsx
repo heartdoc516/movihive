@@ -78,24 +78,17 @@ const AuthForm = ({
         onSubmit={(e) => {
           if (authForm === "Register") {
             signUp(e);
-          }
-          if (authForm === "Log in") {
+          } else if (authForm === "Log in") {
             signIn(e);
-          } else {
-            e.preventDefault();
-            return;
           }
         }}
         className="auth-form"
       >
-        {authForm !== "Forgot Password" && (
-          <h1 className="title text-center mb-4">MOVIHIVE</h1>
-        )}
-        {authForm !== "Forgot Password" && (
-          <h3 id="logo" className="text-white fs-4 mb-4">
-            {authForm}
-          </h3>
-        )}
+        <h1 className="title text-center mb-4">MOVIHIVE</h1>
+
+        <h3 id="logo" className="text-white fs-4 mb-4">
+          {authForm}
+        </h3>
 
         <label htmlFor="username">Username</label>
         <input
@@ -124,22 +117,21 @@ const AuthForm = ({
             />
           </>
         )}
-        {authForm !== "Forgot Password" && (
-          <>
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter your password.."
-              required
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setError("");
-              }}
-            />
-          </>
-        )}
+
+        <>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password.."
+            required
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setError("");
+            }}
+          />
+        </>
 
         {authForm === "Register" && (
           <>
@@ -160,11 +152,7 @@ const AuthForm = ({
         <p className="text-danger">{error}</p>
 
         {authForm === "Log in" && (
-          <button
-            className="forgot"
-            href="#"
-            onClick={() => setAuthForm("Forgot Password")}
-          >
+          <button className="forgot" href="#">
             Forgot Password?
           </button>
         )}
@@ -176,17 +164,13 @@ const AuthForm = ({
               setAuthForm("Log in");
             } else if (authForm === "Log in") {
               setAuthForm("Register");
-            } else if (authForm === "Forgot Password") {
-              setAuthForm("Log in");
             }
-
             setError("");
           }}
           type="button"
         >
           {authForm === "Log in" && "Register"}
           {authForm === "Register" && "Log in"}
-          {authForm === "Forgot Password" && "Log in"}
         </button>
 
         <input
