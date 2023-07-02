@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { tmdbApiToken } from "../utils/tmdbToken.js";
 import "../style/carouselbanner.css";
+import { Star } from "react-feather";
+import { Link } from "react-router-dom";
 
 function getGenreNames(genreIdArray, genres) {
   let genreNames = [];
@@ -59,6 +61,8 @@ const CarouselBanner = () => {
 
   return (
     <div id="carouselExample" className="carousel-banner carousel slide">
+      <h1 className="now-playing title text-white">Now Playing</h1>
+
       <div className="carousel-inner">
         {data.map((item) => (
           <div className={`carousel-item ${active.id === item.id && "active"}`}>
@@ -68,13 +72,15 @@ const CarouselBanner = () => {
                 className="d-block"
                 alt="..."
               />
+
               <div className="text-block">
-                <h1 className="title text-white">{item.original_title}</h1>
-                <div>{}</div>
-                <button>Watch Trailer</button>
-                <div>
+                <h2 className="title text-white">{item.original_title}</h2>
+
+                <button className="trailer-button btn">Watch Trailer</button>
+                <Link className="ms-3">{<Star color="gold" size={20} />}</Link>
+                <div className="d-none mt-3 d-sm-flex justify-content-aroud gap-3 flex-wrap">
                   {getGenreNames(item.genre_ids, genres).map((genre) => (
-                    <div className="text-white">{genre}</div>
+                    <div className="genre text-white">{genre}</div>
                   ))}
                 </div>
               </div>
