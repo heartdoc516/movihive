@@ -1,23 +1,26 @@
-import React from "react";
-
+import React, { useEffect } from "react";
+import getWatchProvider from "../utils/getWatchProviders.js";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 import "../style/contentcarousel.css";
 
-import { Pagination } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 
 const ContentCarousel = () => {
   return (
     <>
+      <h3 className="title text-white mt-3 ms-4">Popular Movies</h3>
       <Swiper
         slidesPerView={1}
         spaceBetween={10}
         pagination={{
           clickable: true,
         }}
+        navigation
         breakpoints={{
           640: {
             slidesPerView: 2,
@@ -32,8 +35,8 @@ const ContentCarousel = () => {
             spaceBetween: 50,
           },
         }}
-        modules={[Pagination]}
-        className="mySwiper"
+        modules={[Pagination, Navigation]}
+        className="content-carousel"
       >
         <SwiperSlide>
           <img

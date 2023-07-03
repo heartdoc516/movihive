@@ -66,7 +66,6 @@
 .carousel-banner .genre {
   padding: 6px 10px;
   background-color: rgba(55, 55, 55, 0.513);
-
   border-radius: 50px;
   font-size: 0.7em;
 }
@@ -81,9 +80,9 @@
 }
 
 .carousel-banner .indicator {
-  width: 3rem;
-  height: 0.3rem;
-  background-color: aliceblue;
+  width: 1rem;
+  height: 0.2rem;
+  background-color: rgba(255, 234, 0, 0.217);
   border-radius: 50px;
   cursor: pointer;
 }

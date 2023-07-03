@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { tmdbApiToken } from "../utils/tmdbToken.js";
+import useData from "../hooks/useData.jsx";
 import "../style/carouselbanner.css";
 import { Star } from "react-feather";
 import { Link } from "react-router-dom";
 
 const CarouselBanner = () => {
-  const [data, setData] = useState([]);
-  const [genres, setGenres] = useState([]);
+  const [data, genres, watchProviders] = useData();
+
   const [activeIndicator, setActiveIndicator] = useState(0);
 
   function getGenreNames(genreIdArray, genres) {
@@ -38,45 +39,6 @@ const CarouselBanner = () => {
       setActiveIndicator(idxToGoTo);
     }
   }
-
-  useEffect(() => {
-    const url =
-      "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${tmdbApiToken}`,
-      },
-    };
-
-    fetch(url, options)
-      .then((res) => res.json())
-      .then((json) => {
-        const results = json.results;
-
-        setData(results.slice(0, 6));
-      })
-      .catch((err) => console.error("error:" + err));
-  }, []);
-
-  useEffect(() => {
-    const url = "https://api.themoviedb.org/3/genre/movie/list?language=en";
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${tmdbApiToken}`,
-      },
-    };
-
-    fetch(url, options)
-      .then((res) => res.json())
-      .then((json) => {
-        setGenres(json.genres);
-      })
-      .catch((err) => console.error("error:" + err));
-  }, []);
 
   return (
     <div id="carouselExample" className="carousel-banner carousel slide">
