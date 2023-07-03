@@ -48,6 +48,11 @@
   top: 5%;
   left: 6%;
   z-index: 1;
+  background-color: rgba(0, 0, 0, 0.789);
+  backdrop-filter: blur(4px);
+  border-radius: 30px;
+  padding: 10px 16px 6px 16px;
+  line-height: 2rem;
 }
 
 .carousel-banner .carousel-control-next-icon {
@@ -75,15 +80,24 @@
   border-width: 1px;
 }
 
+.carousel-banner .indicator {
+  width: 3rem;
+  height: 0.3rem;
+  background-color: aliceblue;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.carousel-banner .indicator.active {
+  background-color: var(--gold);
+}
+
 .carousel-banner .trailer-button:hover {
   background-color: transparent;
   backdrop-filter: blur(4px);
 }
 
 @media screen and (max-width: 768px) {
-  .carousel-banner .carousel-inner {
-    height: 50vh;
-  }
   .carousel-banner h2 {
     font-size: 1em;
   }
