@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import getWatchProvider from "../utils/getWatchProviders.js";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";

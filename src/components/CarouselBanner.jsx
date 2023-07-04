@@ -1,14 +1,73 @@
 import React, { useEffect, useState } from "react";
 import { tmdbApiToken } from "../utils/tmdbToken.js";
-import useData from "../hooks/useData.jsx";
+
 import "../style/carouselbanner.css";
 import { Star } from "react-feather";
 import { Link } from "react-router-dom";
 
 const CarouselBanner = () => {
-  const [data, genres, watchProviders] = useData();
-
+  const [data, setData] = useState([]);
+  const [providersData, setProvidersData] = useState([]);
+  const [genres, setGenres] = useState([]);
   const [activeIndicator, setActiveIndicator] = useState(0);
+
+  useEffect(() => {
+    const url =
+      "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${tmdbApiToken}`,
+      },
+    };
+
+    fetch(url, options)
+      .then((res) => res.json())
+      .then((json) => {
+        setData(json.results);
+      })
+      .catch((err) => console.error("error:" + err));
+  }, []);
+
+  useEffect(() => {
+    const providers = [];
+
+    data.forEach((item) => {
+      fetch(`https://api.themoviedb.org/3/movie/${item.id}/watch/providers`, {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${tmdbApiToken}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((json) => {
+          const results = json;
+          providers.push(results);
+        });
+    });
+
+    setProvidersData(providers);
+  }, [data]);
+
+  useEffect(() => {
+    const url = "https://api.themoviedb.org/3/genre/movie/list?language=en";
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${tmdbApiToken}`,
+      },
+    };
+
+    fetch(url, options)
+      .then((res) => res.json())
+      .then((json) => {
+        setGenres(json.genres);
+      })
+      .catch((err) => console.error("error:" + err));
+  }, []);
 
   function getGenreNames(genreIdArray, genres) {
     let genreNames = [];
