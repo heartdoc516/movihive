@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const MobileMenu = ({ user, setMenuDisplay }) => {
   return (
-    <div className="mobile-menu d-flex flex-column justify-content-start align-items-start-center gap-3">
+    <div className="mobile-menu d-flex d-lg-none flex-column justify-content-start align-items-start-center gap-3">
       <div className="d-flex flex-column justify-content-center align-items-center gap-4 mb-5">
         <Link
           to="search"

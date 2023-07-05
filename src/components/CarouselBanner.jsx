@@ -6,15 +6,12 @@ import "../style/carouselbanner.css";
 
 import Banner from "./Banner.jsx";
 
-const CarouselBanner = () => {
+const CarouselBanner = ({ title, url }) => {
   const [data, setData] = useState([]);
-
   const genres = useGenres();
   const [activeIndicator, setActiveIndicator] = useState(0);
 
   useEffect(() => {
-    const url =
-      "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
     const options = {
       method: "GET",
       headers: {
@@ -53,7 +50,7 @@ const CarouselBanner = () => {
 
   return (
     <div id="carouselExample" className="carousel-banner carousel slide">
-      <h1 className="now-playing title text-white">Now Playing</h1>
+      <h1 className="now-playing title text-white">{title}</h1>
 
       <div className="carousel-inner">
         {data.map((item, idx) => (

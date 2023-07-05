@@ -2,7 +2,6 @@ import React from "react";
 import "../style/genretags.css";
 
 const GenreTags = ({ genreIds, genres }) => {
-  console.log(genres);
   function getGenreNames(genreIdArray, genres) {
     let genreNames = [];
     genres.forEach((genre) => {

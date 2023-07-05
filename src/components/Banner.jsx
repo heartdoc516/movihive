@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Star } from "react-feather";
 import { Link } from "react-router-dom";
 import GenreTags from "./GenreTags";
+import useProviders from "../hooks/useProviders.jsx";
 import "../style/banner.css";
 
 const Banner = ({ item, index, activeIndicator, genres }) => {
+  const providers = useProviders(item.id);
+
   return (
     <div className={`carousel-item ${index === activeIndicator && "active"}`}>
       <div className="img-container">
@@ -17,8 +20,13 @@ const Banner = ({ item, index, activeIndicator, genres }) => {
         <div className="text-block">
           <h2 className="title text-white">{item.original_title}</h2>
 
-          <div className="d-none mt-3 d-sm-flex justify-content-aroud gap-3 flex-wrap">
+          <div className="d-none mt-3 d-sm-flex">
             {<GenreTags genreIds={item.genre_ids} genres={genres} />}
+          </div>
+          <div className="flex align-items-center">
+            {providers.map((provider) => (
+              <div className="text-white">{provider.provider_name}</div>
+            ))}
           </div>
           <div className="mt-3">
             <button className="trailer-button btn">Watch Trailer</button>

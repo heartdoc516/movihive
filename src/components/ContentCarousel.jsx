@@ -12,15 +12,13 @@ import "../style/contentcarousel.css";
 import { Pagination, Navigation, Virtual } from "swiper/modules";
 import MovieCard from "./MovieCard.jsx";
 
-const ContentCarousel = () => {
+const ContentCarousel = ({ title, url }) => {
   const [data, setData] = useState([]);
   const genres = useGenres();
 
   useEffect(() => {
     const fetch = require("node-fetch");
 
-    const url =
-      "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
     const options = {
       method: "GET",
       headers: {
@@ -38,7 +36,7 @@ const ContentCarousel = () => {
 
   return (
     <>
-      <h3 className="title text-white mt-3 ms-4">Popular Movies</h3>
+      <h3 className="title text-white mt-3 ms-4">{title}</h3>
       <Swiper
         virtual
         slidesPerView={1}
