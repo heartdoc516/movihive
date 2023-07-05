@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { tmdbApiToken } from "../utils/tmdbToken";
 
-export default function useProviders(id) {
+export default function useProviders(id, type) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const url = `
-          https://api.themoviedb.org/3/movie/${id}/watch/providers`;
+          https://api.themoviedb.org/3/${type}/${id}/watch/providers`;
 
     const options = {
       method: "GET",

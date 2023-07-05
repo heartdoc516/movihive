@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../style/moviecard.css";
 import { Film, Star } from "react-feather";
 import GenreTags from "./GenreTags.jsx";
+import Favorite from "./Favorite.jsx";
 
 const MovieCard = ({ item, genres }) => {
   const [activeHoverCard, setActiveHoverCard] = useState(false);
@@ -20,7 +21,7 @@ const MovieCard = ({ item, genres }) => {
       <div className={`hover-card ${activeHoverCard ? "active" : ""}`}>
         <div className="d-flex justify-content-center align-items-center gap-3">
           <Film color="gold" size={20} />
-          <Star color="gold" size={20} />
+          <Favorite />
         </div>
         <div className="d-block mt-3">
           <GenreTags genreIds={item.genre_ids} genres={genres} />

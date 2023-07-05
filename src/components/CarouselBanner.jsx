@@ -6,7 +6,7 @@ import "../style/carouselbanner.css";
 
 import Banner from "./Banner.jsx";
 
-const CarouselBanner = ({ title, url }) => {
+const CarouselBanner = ({ title, url, type }) => {
   const [data, setData] = useState([]);
   const genres = useGenres();
   const [activeIndicator, setActiveIndicator] = useState(0);
@@ -60,6 +60,7 @@ const CarouselBanner = ({ title, url }) => {
             activeIndicator={activeIndicator}
             genres={genres}
             key={item.id}
+            type={type}
           />
         ))}
       </div>

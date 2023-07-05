@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Star } from "react-feather";
-import { Link } from "react-router-dom";
+import Favorite from "./Favorite.jsx";
 import GenreTags from "./GenreTags";
 import useProviders from "../hooks/useProviders.jsx";
 import "../style/banner.css";
 
-const Banner = ({ item, index, activeIndicator, genres }) => {
-  const providers = useProviders(item.id);
+const Banner = ({ item, index, activeIndicator, genres, type }) => {
+  const providers = useProviders(item.id, type);
 
   return (
     <div className={`carousel-item ${index === activeIndicator && "active"}`}>
@@ -18,19 +16,27 @@ const Banner = ({ item, index, activeIndicator, genres }) => {
         />
 
         <div className="text-block">
-          <h2 className="title text-white">{item.original_title}</h2>
+          <h2 className="title text-white">
+            {item.original_title || item.name}
+          </h2>
 
           <div className="d-none mt-3 d-sm-flex">
             {<GenreTags genreIds={item.genre_ids} genres={genres} />}
           </div>
-          <div className="flex align-items-center">
-            {providers.map((provider) => (
-              <div className="text-white">{provider.provider_name}</div>
-            ))}
+          <div className="mt-3">
+            {providers.map((provider) => {
+              return (
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${provider.logo_path}`}
+                  alt={provider.provider_name}
+                  className="provider-logo ms-2"
+                ></img>
+              );
+            })}
           </div>
           <div className="mt-3">
-            <button className="trailer-button btn">Watch Trailer</button>
-            <Link className="ms-3">{<Star color="gold" size={20} />}</Link>
+            <button className="trailer-button btn me-2">Watch Trailer</button>
+            <Favorite />
           </div>
         </div>
       </div>

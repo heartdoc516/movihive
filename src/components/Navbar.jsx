@@ -17,8 +17,7 @@ const Navbar = ({ user }) => {
             <img className="navbar-logo pt-1" src={logo} alt="logo" />
           </div>
           <div className="nav-links d-none d-lg-flex justify-content-between">
-            <Navlink name="Home" slug="/" />
-            <Navlink name="Movies" slug="movies" />
+            <Navlink name="Movies" slug="/" />
             <Navlink name="TV" slug="tv" />
             <Navlink name="Categories" slug="categories" />
             <Navlink name="About" slug="about" />

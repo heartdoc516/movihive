@@ -35,8 +35,7 @@ const MobileMenu = ({ user, setMenuDisplay }) => {
         )}
       </div>
       <div className="d-flex flex-column justify-content-center align-items-center gap-3">
-        <Navlink name="Home" slug="/" setMenuDisplay={setMenuDisplay} />
-        <Navlink name="Movies" slug="movies" setMenuDisplay={setMenuDisplay} />
+        <Navlink name="Movies" slug="/" setMenuDisplay={setMenuDisplay} />
         <Navlink name="TV" slug="tv" setMenuDisplay={setMenuDisplay} />
         <Navlink
           name="Categories"
