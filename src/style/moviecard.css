@@ -1,0 +1,18 @@
+@import url("./main.css");
+
+.movie-card .hover-card {
+  display: none;
+}
+
+.movie-card .hover-card.active {
+  display: block;
+  padding: 1rem;
+  min-height: 4rem;
+  background-color: rgba(0, 0, 0, 0.612);
+  backdrop-filter: blur(4px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 4rem;
+}

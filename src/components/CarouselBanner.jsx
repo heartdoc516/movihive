@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { tmdbApiToken } from "../utils/tmdbToken.js";
+import useGenres from "../hooks/useGenres.jsx";
 
 import "../style/carouselbanner.css";
-import { Star } from "react-feather";
-import { Link } from "react-router-dom";
+
+import Banner from "./Banner.jsx";
 
 const CarouselBanner = () => {
   const [data, setData] = useState([]);
-  const [providersData, setProvidersData] = useState([]);
-  const [genres, setGenres] = useState([]);
+
+  const genres = useGenres();
   const [activeIndicator, setActiveIndicator] = useState(0);
 
   useEffect(() => {
@@ -29,55 +30,6 @@ const CarouselBanner = () => {
       })
       .catch((err) => console.error("error:" + err));
   }, []);
-
-  useEffect(() => {
-    const providers = [];
-
-    data.forEach((item) => {
-      fetch(`https://api.themoviedb.org/3/movie/${item.id}/watch/providers`, {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${tmdbApiToken}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((json) => {
-          const results = json;
-          providers.push(results);
-        });
-    });
-
-    setProvidersData(providers);
-  }, [data]);
-
-  useEffect(() => {
-    const url = "https://api.themoviedb.org/3/genre/movie/list?language=en";
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${tmdbApiToken}`,
-      },
-    };
-
-    fetch(url, options)
-      .then((res) => res.json())
-      .then((json) => {
-        setGenres(json.genres);
-      })
-      .catch((err) => console.error("error:" + err));
-  }, []);
-
-  function getGenreNames(genreIdArray, genres) {
-    let genreNames = [];
-    genres.forEach((genre) => {
-      if (genreIdArray.includes(genre.id)) {
-        genreNames.push(genre.name);
-      }
-    });
-    return genreNames;
-  }
 
   function handleSetActiveIndicator(activeIdx, direction, idxToGoTo) {
     if (direction === "next") {
@@ -105,33 +57,13 @@ const CarouselBanner = () => {
 
       <div className="carousel-inner">
         {data.map((item, idx) => (
-          <div
-            className={`carousel-item ${idx === activeIndicator && "active"}`}
-          >
-            <div className="img-container">
-              <img
-                src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
-                className="d-block"
-                alt="..."
-              />
-
-              <div className="text-block">
-                <h2 className="title text-white">{item.original_title}</h2>
-
-                <div className="d-none mt-3 d-sm-flex justify-content-aroud gap-3 flex-wrap">
-                  {getGenreNames(item.genre_ids, genres).map((genre) => (
-                    <div className="genre text-white">{genre}</div>
-                  ))}
-                </div>
-                <div className="mt-3">
-                  <button className="trailer-button btn">Watch Trailer</button>
-                  <Link className="ms-3">
-                    {<Star color="gold" size={20} />}
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Banner
+            item={item}
+            index={idx}
+            activeIndicator={activeIndicator}
+            genres={genres}
+            key={item.id}
+          />
         ))}
       </div>
       <button
