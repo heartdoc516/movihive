@@ -24,7 +24,7 @@ export default function useProviders(id, type) {
         }
       })
       .catch((err) => console.error("error:" + err));
-  }, []);
-  console.log(data);
+  }, [id]);
+
   return data;
 }

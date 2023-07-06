@@ -13,9 +13,9 @@ const Navbar = ({ user }) => {
     <>
       <nav className={`navbar`}>
         <div className="container-fluid">
-          <div className="logo-container">
+          <Link to={"/"} className="logo-container">
             <img className="navbar-logo pt-1" src={logo} alt="logo" />
-          </div>
+          </Link>
           <div className="nav-links d-none d-lg-flex justify-content-between">
             <Navlink name="Movies" slug="/" />
             <Navlink name="TV" slug="tv" />

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useGenres from "../hooks/useGenres.jsx";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { tmdbApiToken } from "../utils/tmdbToken.js";
 
 import "swiper/css";
 
@@ -12,19 +13,16 @@ import "../style/contentcarousel.css";
 import { Pagination, Navigation, Virtual } from "swiper/modules";
 import MovieCard from "./MovieCard.jsx";
 
-const ContentCarousel = ({ title, url }) => {
+const ContentCarousel = ({ title, url, type }) => {
   const [data, setData] = useState([]);
   const genres = useGenres();
 
   useEffect(() => {
-    const fetch = require("node-fetch");
-
     const options = {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZmZjNTcxMzZmNzEyMjlhMTY3NTVlNTRmZTc5YmE3ZCIsInN1YiI6IjY0OGM5ZWIwMDc2Y2U4MDBlNzQzOTc5OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9lCZhB2s6M6hSUyJUsuKeWKY4V3R2_KwMTgtapE5lGE",
+        Authorization: `Bearer ${tmdbApiToken}`,
       },
     };
 
@@ -64,7 +62,7 @@ const ContentCarousel = ({ title, url }) => {
       >
         {data.map((item, index) => (
           <SwiperSlide key={item.id} virtualIndex={index}>
-            <MovieCard item={item} genres={genres} />
+            <MovieCard item={item} genres={genres} type={type} />
           </SwiperSlide>
         ))}
       </Swiper>

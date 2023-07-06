@@ -1,8 +1,6 @@
 @import url("./main.css");
 
 .genre-tags .genre {
-  padding: 6px 10px;
-  background-color: rgba(55, 55, 55, 0.513);
-  border-radius: 50px;
   font-size: 0.7em;
+  color: rgb(204, 204, 204);
 }

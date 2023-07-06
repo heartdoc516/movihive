@@ -2,9 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import About from "./pages/About.jsx";
-import Home from "./pages/Home.jsx";
+import Movie from "./pages/Movie.jsx";
 import Categories from "./pages/Categories.jsx";
 import Movies from "./pages/Movies.jsx";
+import Serie from "./pages/Serie.jsx";
 import Watchlist from "./pages/Watchlist.jsx";
 import Tv from "./pages/Tv.jsx";
 import Navbar from "./components/Navbar.jsx";
@@ -27,7 +28,12 @@ function App() {
           <Route path="/tv" element={<Tv />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/about" element={<About />} />
-          <Route path="/watchlist" element={user ? <Watchlist /> : <Home />} />
+          <Route path="/movie/:movieId" element={<Movie />} />
+          <Route path="/serie/:serieId" element={<Serie />} />
+          <Route
+            path="/watchlist"
+            element={user ? <Watchlist /> : <Movies />}
+          />
           <Route path="/search" element={<Search />} />
           <Route
             path="/auth"
