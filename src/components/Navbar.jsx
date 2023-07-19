@@ -17,10 +17,18 @@ const Navbar = ({ user }) => {
             <img className="navbar-logo pt-1" src={logo} alt="logo" />
           </Link>
           <div className="nav-links d-none d-lg-flex justify-content-between">
-            <Navlink name="Movies" slug="/" />
-            <Navlink name="TV" slug="tv" />
-            <Navlink name="Categories" slug="categories" />
-            <Navlink name="About" slug="about" />
+            <Navlink name="Movies" slug="/" setMenuDisplay={setMenuDisplay} />
+            <Navlink name="TV" slug="tv" setMenuDisplay={setMenuDisplay} />
+            <Navlink
+              name="Categories"
+              slug="categories"
+              setMenuDisplay={setMenuDisplay}
+            />
+            <Navlink
+              name="About"
+              slug="about"
+              setMenuDisplay={setMenuDisplay}
+            />
           </div>
           <div className="nav-links-end d-none d-lg-flex justify-content-end align-items-center gap-4">
             {user ? (

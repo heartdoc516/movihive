@@ -9,7 +9,7 @@ import Serie from "./pages/Serie.jsx";
 import Watchlist from "./pages/Watchlist.jsx";
 import Tv from "./pages/Tv.jsx";
 import Navbar from "./components/Navbar.jsx";
-import Search from "./pages/Search.jsx";
+import SearchPage from "./pages/SearchPage.jsx";
 import AuthPage from "./pages/AuthPage.jsx";
 
 import { LoadingContextProvider } from "./context/AppContext.jsx";
@@ -34,7 +34,7 @@ function App() {
             path="/watchlist"
             element={user ? <Watchlist /> : <Movies />}
           />
-          <Route path="/search" element={<Search />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route
             path="/auth"
             element={<AuthPage user={user} setUser={setUser} />}

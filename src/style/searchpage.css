@@ -1,0 +1,43 @@
+@import url("./main.css");
+
+.search-page form {
+  width: 60%;
+  background-color: rgb(46, 46, 46);
+  border-radius: 50px;
+  outline: 0;
+}
+
+.search-page input:focus {
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+  color: var(--gold);
+}
+
+.search-page button {
+  width: 30px;
+}
+
+.search-page .grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto;
+  max-width: 100%;
+}
+
+.search-page .grid-item {
+  max-width: 200px;
+}
+
+.search-page .next-button {
+  padding: 2px 8px;
+  background-color: rgba(0, 0, 0, 0.789);
+  backdrop-filter: blur(4px);
+  color: var(--gold);
+  border-color: var(--gold);
+  border-width: 1px;
+}
+
+.search-page .next-button:hover {
+  background-color: transparent;
+  backdrop-filter: blur(4px);
+}
