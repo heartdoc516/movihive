@@ -1,11 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../style/searchpage.css";
 import { Search } from "react-feather";
-import SearchResult from "../components/SearchResult";
 import SearchResults from "../components/SearchResults";
 
 const SearchPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const url = "https://api.themoviedb.org/3/trending/all/day";
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZmZjNTcxMzZmNzEyMjlhMTY3NTVlNTRmZTc5YmE3ZCIsInN1YiI6IjY0OGM5ZWIwMDc2Y2U4MDBlNzQzOTc5OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9lCZhB2s6M6hSUyJUsuKeWKY4V3R2_KwMTgtapE5lGE",
+      },
+    };
+
+    fetch(url, options)
+      .then((res) => res.json())
+      .then((json) => setData(json.results))
+      .catch((err) => console.error("error:" + err));
+  });
 
   return (
     <section className="search-page">
@@ -26,6 +43,11 @@ const SearchPage = () => {
           <Search color="gold" size={20} />
         </button>
       </form>
+      <div className="mx-auto w-50 d-flex gap-3 justify-content-center flex-wrap mt-5">
+        {data.map((item) => (
+          <div className="text-white-50">{item.title}</div>
+        ))}
+      </div>
 
       <main className="search-results">
         <SearchResults type={"movie"} query={searchQuery} />

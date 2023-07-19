@@ -9,7 +9,7 @@ const SearchResults = ({ type, query }) => {
   };
 
   const [data, setData] = useState([]);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [searchTimeout, setSearchTimeout] = useState(null);
 
@@ -57,16 +57,24 @@ const SearchResults = ({ type, query }) => {
 
   return (
     <div className="mt-5 mx-5">
-      <h3 className="text-white ms-3 mb-3">{resultsType[type]}</h3>
+      <h3
+        className={`text-white ms-3 mb-3 ${data.length === 0 ? "d-none" : ""}`}
+      >
+        {resultsType[type]}
+      </h3>
       <div className="grid gap-3 grid-container">
         {data.map((content) => (
-          <div className="grid-item mt-0">
-            <SearchResult content={content} type={type}></SearchResult>
+          <div className="grid-item mt-0 d-flex justify-content-center align-items-center">
+            <SearchResult
+              content={content}
+              type={type}
+              key={content.id}
+            ></SearchResult>
           </div>
         ))}
         <button
-          className={`next-button btn me-2 grid-item w-100 ${
-            !data || page === totalPages ? "d-none" : ""
+          className={`next-button btn w-100 ${
+            data.length === 0 || page === totalPages ? "d-none" : ""
           }`}
           onClick={() => setPage(page + 1)}
         >
